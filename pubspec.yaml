@@ -1,8 +1,8 @@
 name: log_controller
 description: A polymer element which lets you control the global logging configuration.
 dependencies:
-    polymer: "0.12.0-dev"
-    core_elements: "<=0.0.6"
+    polymer: ">=0.12.0-dev <0.13.0"
+    core_elements: ">=0.0.6 <0.1.0"
 transformers:
 - polymer:
     entry_points: example/index.html
