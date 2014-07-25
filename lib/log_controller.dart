@@ -23,7 +23,7 @@ class LogController extends PolymerElement {
   // Names for all the valid logging levels.
   static final Map<String, Level> _ALL_LEVELS = () {
     var map = {};
-    Level.LEVELS.forEach((l) { map[l.name] = l; });
+    Level.LEVELS.forEach((level) { map[level.name] = level; });
     return map;
   }();
 
@@ -35,8 +35,15 @@ class LogController extends PolymerElement {
 
   // Listens to logLevel changes and updates the root logger accordingly.
   void logLevelChanged(String oldLogLevel, String newLogLevel) {
-    // Set the level using its name, and close the panel.
-    setLevelByName(newLogLevel);
+    // Set the level using its name.
+    var level = _ALL_LEVELS[newLogLevel];
+    if (level == null) {
+      _logger.warning("log level $newLogLevel not found");
+    } else {
+      Logger.root.level = level;
+    }
+
+    // Close the panel if its open.
     if (this.$['collapseLevels'].opened) {
       this.$['collapseLevels'].toggle();
     }
@@ -44,15 +51,6 @@ class LogController extends PolymerElement {
 
   // Any time printToConsole changes, make sure _logListener is updated.
   void printToConsoleChanged() => updateListenter();
-
-  void setLevelByName(String name) {
-    var level = _ALL_LEVELS[name];
-    if (level == null) {
-      _logger.warning("log level $name not found");
-      return;
-    }
-    Logger.root.level = level;
-  }
 
   void toggleCollapseLevels() => $['collapseLevels'].toggle();
 
