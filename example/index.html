@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample app using the log-controller element</title>
+  <script src="packages/web_components/platform.js"></script>
+  <script src="packages/web_components/dart_support.js"></script>
+  <link rel="import" href="packages/log_controller/log_controller.html">
+  <script src="packages/browser/dart.js"></script>
+</head>
+<body>
+<h1>Example of the log controller.</h1>
+
+<p>
+  The controller (bottom right) will control what level of logs actually make
+  it through. <br /> Select a level and then try test log messages using the
+  form below, you should only see a message if you select a level greater than
+  or equal to what you select in the controller.
+</p>
+
+<p>
+  <label for="log-level">Level to log: </label>
+  <select id="log-level">
+    <option value="FINEST">FINEST</option>
+    <option value="FINER">FINER</option>
+    <option value="FINE">FINE</option>
+    <option value="CONFIG">CONFIG</option>
+    <option value="INFO" selected>INFO</option>
+    <option value="WARNING">WARNING</option>
+    <option value="SEVERE">SEVERE</option>
+    <option value="SHOUT">SHOUT</option>
+  </select><br />
+  <label for="log-message">Log Message:</label>
+  <input id="log-message" type="text" value="made it!" />
+  <button id="log-button">Log it!</button>
+</p>
+
+<h2>Logs:</h2>
+<div id="logs"></div>
+
+<log-controller logLevel="ALL"></log-controller>
+
+<script type="application/dart">
+  import 'dart:html';
+  import 'package:logging/logging.dart';
+  import 'package:polymer/polymer.dart';
+
+  void main() {
+    initPolymer().run(() {
+      Polymer.onReady.then((_) {
+
+        var logElement = document.querySelector('#logs');
+        var levelSelector = document.querySelector('#log-level');
+        var buttonElement = document.querySelector('#log-button');
+        var messageElement = document.querySelector('#log-message');
+
+        // Log something on click.
+        buttonElement.onClick.listen((_) {
+          Logger.root.log(getLevelByName(levelSelector.value), messageElement.value);
+        });
+
+        // Append logs to the page.
+        Logger.root.onRecord.listen((rec) {
+          logElement.appendHtml('<div class="log">${rec.message}</div>');
+        });
+      });
+    });
+  }
+
+  Level getLevelByName(String name) {
+    return Level.LEVELS.firstWhere((level) => level.name == name);
+  }
+
+</script>
+
+</body>
+</html>

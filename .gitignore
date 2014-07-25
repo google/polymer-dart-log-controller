@@ -12,3 +12,6 @@ packages
 
 # Or intellij files
 .idea/
+
+# Include when developing application packages.
+pubspec.lock
