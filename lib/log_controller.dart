@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:polymer/polymer.dart';
 import 'package:logging/logging.dart';
 
@@ -20,12 +21,15 @@ class LogController extends PolymerElement {
 
   // Static listener on the root logger, null if printToConsole == false.
   static StreamSubscription _logListener;
+
   // Names for all the valid logging levels.
   static final Map<String, Level> _ALL_LEVELS = () {
     var map = {};
     Level.LEVELS.forEach((level) { map[level.name] = level; });
     return map;
   }();
+
+  static final Logger _logger = new Logger('polymer.log-controller');
 
   LogController.created() : super.created() {
     updateListenter();
