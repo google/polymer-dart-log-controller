@@ -1,0 +1,31 @@
+:host {
+  font-size: 12px;
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  border-left: solid 1px black;
+  border-bottom: solid 1px black;
+  padding: 5px 10px;
+  background: white;
+}
+p {
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+}
+button {
+  cursor: pointer;
+}
+#collapseLevels {
+  padding-bottom: 1px;
+}
+.levels > div {
+  border: solid 1px grey;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.levels > div.core-selected {
+  background-color: black;
+  color: white;
+}

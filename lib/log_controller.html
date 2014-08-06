@@ -3,39 +3,7 @@
 <link rel="import" href="../../packages/core_elements/core_collapse.html">
 <polymer-element name="log-controller" attributes="logLevel,printToConsole">
   <template>
-    <style>
-      :host {
-        font-size: 12px;
-        text-align: center;
-        position: fixed;
-        bottom: 0px;
-        right: 0px;
-        border-left: solid 1px black;
-        border-top: solid 1px black;
-        padding: 5px 10px;
-        background: white;
-      }
-      p {
-        font-size: 12px;
-        margin: 0px;
-        padding: 0px;
-      }
-      button {
-        cursor: pointer;
-      }
-      #collapseLevels {
-        padding-bottom: 1px;
-      }
-      .levels > div {
-        border: solid 1px grey;
-        margin-bottom: -1px;
-        cursor: pointer;
-      }
-      .levels > div.core-selected {
-        background-color: black;
-        color: white;
-      }
-    </style>
+    <link rel="stylesheet" href="log_controller.css">
     <p>Log Level: <button on-click="{{toggleCollapseLevels}}">{{logLevel}}</button></p>
     <core-collapse id="collapseLevels">
       <core-selector class="levels" valueattr="label" selected="{{logLevel}}">
@@ -47,4 +15,3 @@
   </template>
   <script type="application/dart" src="log_controller.dart"></script>
 </polymer-element>
-

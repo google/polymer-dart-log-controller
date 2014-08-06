@@ -63,7 +63,7 @@ class LogController extends PolymerElement {
   void updateListenter() {
     if (_logListener == null && printToConsole) {
       _logListener = Logger.root.onRecord.listen((rec) {
-        print(rec.message);
+        print(rec);
       });
     } else if (_logListener != null && !printToConsole) {
       _logListener.cancel();
@@ -71,4 +71,3 @@ class LogController extends PolymerElement {
     }
   }
 }
-
