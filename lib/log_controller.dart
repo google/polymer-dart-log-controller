@@ -17,7 +17,7 @@ class LogController extends PolymerElement {
 
   // Whether or not this should automatically pass all logs through to the
   // console.
-  @published bool printToConsole = true;
+  @published bool printToConsole = false;
 
   // Static listener on the root logger, null if printToConsole == false.
   static StreamSubscription _logListener;
