@@ -1,5 +1,5 @@
 name: log_controller
-version: 0.0.1-pre
+version: 0.0.1-pre+1
 description: A polymer element which lets you control the global logging configuration.
 dependencies:
     polymer: ">=0.12.0 <0.13.0"
