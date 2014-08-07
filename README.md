@@ -16,4 +16,4 @@ Simply include the element like any other polymer element.
 There are two configurable attributes:
 
 - logLevel: The minimum level that all log calls must meet in order to actually be logged.
-- printToConsole: Defaults to true, whether the element should log messages to the console.
+- printToConsole: Defaults to false, whether the element should log messages to the console.
